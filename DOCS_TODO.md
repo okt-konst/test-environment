@@ -39,19 +39,14 @@ Configuration model files were renamed from `.xml` to `.yml`.
 
 ---
 
-## 2. Incorrect Content (HIGH priority)
+## 2. Incorrect Content (HIGH priority) -- DONE
 
-### 2.1 group_te_agents.rst
+### 2.1 group_te_agents.rst -- DONE
 
-- **Line 31**: Claims FreeBSD support, but `agents/unix/conf/daemons/conf_daemons_internal.h`
-  has `#error FreeBSD is not supported yet`. Remove or qualify the FreeBSD claim.
-- **Lines 135-139**: States "two main types of te_agents" (Unix, Windows), but there
-  are five agent types: unix, win32, proxy, power-ctl, switch-ctl. Document or
-  at least mention the other three.
+- ~~Removed incorrect FreeBSD claim~~
+- ~~Listed all five agent types (unix, win32, proxy, power-ctl, switch-ctl)~~
 
 ### 2.2 group_te_engine_dispatcher.rst -- DONE
-
-~~All 5 issues fixed:~~
 
 - ~~Malformed usage line with spurious `=""` XML-like attributes~~
 - ~~Option `force` missing `--` prefix~~
@@ -59,37 +54,33 @@ Configuration model files were renamed from `.xml` to `.yml`.
 - ~~Incomplete `sniff-snaplen` default value (now "unlimited")~~
 - ~~Hardcoded developer path replaced with `${TE_RUN_DIR}/caps`~~
 
-### 2.3 group_te_engine_rcf.rst
+### 2.3 group_te_engine_rcf.rst -- DONE
 
-- **Lines 428-448**: RCF configuration examples use `confstr="..."` XML attribute
-  syntax, but the actual format uses `<conf name="...">value</conf>` elements.
+- ~~Updated config examples from deprecated `confstr="..."` attribute syntax
+  to current `<conf name="...">value</conf>` element syntax~~
 
-### 2.4 group_trc.rst
+### 2.4 group_trc.rst -- DONE
 
-- **Line 75**: "Failed, as expected" row description says "tests which were
-  expected to pass and passed" - contradicts the label.
+- ~~Fixed "Failed, as expected" description: "expected to pass and passed"
+  → "expected to fail and failed"~~
 
-### 2.5 group_tapi_tad_main.rst
+### 2.5 group_tapi_tad_main.rst -- DONE (fixed in earlier commit)
 
-- **Line 35**: References non-existent document `doc/hld/OKTL-HLD-0000236-TE_TAD.sxw`.
-  The `doc/hld/` directory does not exist.
+- ~~Commented out reference to non-existent HLD document~~
 
-### 2.6 group_tapi_conf.rst
+### 2.6 group_tapi_conf.rst -- DONE
 
-- **Line 66**: References non-existent Doxygen group `tapi_conf_eth`. No
-  `@defgroup tapi_conf_eth` exists. Should reference `tapi_conf_if` or
-  `tapi_conf_iface`.
+- ~~Replaced non-existent `tapi_conf_eth` reference with `tapi_conf_if`~~
 
-### 2.7 group_te_agents_conf.rst
+### 2.7 group_te_agents_conf.rst -- DONE
 
-- **Lines 239, 241**: Code example uses `strdup()` (should be `TE_STRDUP()`) and
-  is missing `return` before `TE_RC(TE_TA_UNIX, TE_ENOMEM)`.
+- ~~Replaced `strdup()` with `TE_STRDUP()`, removed unnecessary NULL check~~
 
-### 2.8 group_te_agents_unix.rst
+### 2.8 group_te_agents_unix.rst -- DONE
 
-- **Lines 64-80**: Claims `agents/unix/rpc` directory exists for RPC implementation,
-  but no such directory exists. Missing documentation of subdirectories: ovs,
-  process, rule, tc, vm.
+- ~~Fixed "Egent" typo to "Agent"~~
+- ~~Removed non-existent `agents/unix/rpc` directory reference~~
+- ~~Added missing conf subdirectories: ovs, process, rule, tc, vm~~
 
 ---
 
@@ -207,7 +198,7 @@ RST documentation pages. Currently only Unix and Windows agents are documented.
 |----------|-------|
 | ~~Wrong code-block language tags~~ | ~~50+ instances across 10 files~~ DONE |
 | Outdated XML-to-YAML references | 2 files |
-| Incorrect content (factual errors) | 8 distinct issues |
+| ~~Incorrect content (factual errors)~~ | ~~8 distinct issues~~ DONE |
 | ~~Broken references/links~~ | ~~7 instances~~ DONE |
 | Typos and spelling errors | 17 instances across 13 files |
 | Formatting issues | 4 instances |
