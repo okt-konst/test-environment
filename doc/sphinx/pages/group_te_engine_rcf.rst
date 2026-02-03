@@ -258,9 +258,9 @@ The Test Agent configuration parameters that are passed to communication library
 
 Other attributes that you can specify for a Test Agent are:
 
-* ``synch_time`` - Enable/disable time synchronization between Test Engine and Test Agent (possile values are yes or no, the default is no);
+* ``synch_time`` - Enable/disable time synchronization between Test Engine and Test Agent (possible values are yes or no, the default is no);
 
-* ``rebootable`` - Tell RCF whether Test Agent can be rebooted or not (possile values are yes or no, the default is no). If this attribute is not enabled, :ref:`rcf_ta_reboot() <doxid-group__rcfapi__base_1ga65756a262339c28a61f62c04766734ff>` function from :ref:`API: RCF <doxid-group__rcfapi__base>` returns ``TE_EPERM`` error code;
+* ``rebootable`` - Tell RCF whether Test Agent can be rebooted or not (possible values are yes or no, the default is no). If this attribute is not enabled, :ref:`rcf_ta_reboot() <doxid-group__rcfapi__base_1ga65756a262339c28a61f62c04766734ff>` function from :ref:`API: RCF <doxid-group__rcfapi__base>` returns ``TE_EPERM`` error code;
 
 * ``disabled`` - Whether RCF shall ignore this Test Agent (act as if there was no such Test Agent in configuration file). This attribute can be used to tune RCF configuration via environment variables. For example:
 

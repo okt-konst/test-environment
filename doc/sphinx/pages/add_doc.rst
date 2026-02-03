@@ -23,7 +23,7 @@ Structure
 * ``doc/sphinx/static/css`` folder for you custom css.
 
 To add your own page, you need to put your page in `RST`_ format
-into ``doc/shpinx/pages`` and reference your file
+into ``doc/sphinx/pages`` and reference your file
 from the main file ``doc/sphinx/index.rst``
 
 To generate Sphinx documentation from scratch you need to run these commands:

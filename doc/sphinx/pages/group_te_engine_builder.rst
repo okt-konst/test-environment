@@ -194,7 +194,7 @@ TE_TA_TYPE
 
 This directive is necessary to build a Test Agent of the particular type. Platform type should be one of platforms specified with TE_PLATFORM directive (For host platform this should be an empty string).
 
-Test Agent type value is an arbitrary string that will be reffered to from RCF configuration file (See RCF :ref:`RCF Configuration File <doxid-group__te__engine__rcf_1te_engine_rcf_conf_file>`).
+Test Agent type value is an arbitrary string that will be referred to from RCF configuration file (See RCF :ref:`RCF Configuration File <doxid-group__te__engine__rcf_1te_engine_rcf_conf_file>`).
 
 Sources of Test Agent are got from [source location] directory, which is either a subdirectory of ${TE_BASE}/agents directory, or full absolute path to sources.
 

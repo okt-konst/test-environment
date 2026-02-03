@@ -48,7 +48,7 @@ Here is a common library which functions are designed for using them everywhere,
 |	:ref:`Stopwatch<doxid-group__te__tools__te__stopwatch>`
 |	:ref:`Date, time<doxid-group__te__tools__te__time>`
 |	:ref:`Timer<doxid-group__te__tools__te__timer>`
-|	:ref:`Dymanic array<doxid-group__te__tools__te__vec>`
+|	:ref:`Dynamic array<doxid-group__te__tools__te__vec>`
 |	:ref:`Dynamic buffers<doxid-group__te__tools__te__dbuf>`
 |	:ref:`Dynamic strings<doxid-group__te__tools__te__string>`
 |	:ref:`Execute a program in a child process<doxid-group__te__tools__te__exec__child>`

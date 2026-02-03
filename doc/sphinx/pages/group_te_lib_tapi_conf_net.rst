@@ -18,7 +18,7 @@ Network topology configuration of Test Agents
 Introduction
 ~~~~~~~~~~~~
 
-In most cases a test scenario requires a special phisical set-up to be prepared. The simplest example is when a test expects two nodes to have a physical connection. From test point of view it does not matter where these nodes reside - the same test should work on different physical set-ups.
+In most cases a test scenario requires a special physical set-up to be prepared. The simplest example is when a test expects two nodes to have a physical connection. From test point of view it does not matter where these nodes reside - the same test should work on different physical set-ups.
 
 Partly physical set-up for a test run is configured via :ref:`RCF Configuration File <doxid-group__te__engine__rcf_1te_engine_rcf_conf_file>` where we specify te_agents to run together with their physical locations (network hosts).
 

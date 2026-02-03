@@ -106,7 +106,7 @@ For example definition of nodes of our sample might look like:
 	RCF_PCH_CFG_NODE_RO(col_obj_var, "var", NULL, NULL, var_get);
 	RCF_PCH_CFG_NODE_COLLECTION(col_node, "col_object",
 	                            &col_obj_var, /* son node */
-	                            &rw_node, /* bother node (neighbor node) */
+	                            &rw_node, /* brother node (neighbor node) */
 	                            NULL, NULL, col_list, NULL);
 
 These definitions should be placed in the source of Test Agent. Then in the implementation of :ref:`rcf_ch_conf_init() <doxid-group__rcf__ch__cfg_1gade2d2cfc87dcd5ba89eb0f7a994a2ae6>` you should put the following line of code that will register your configuration subtree:
@@ -233,7 +233,7 @@ Implementation of handlers for ``col_object`` might look like the following:
 	    /*
 	     * Here we return predefined list of four instance names:
 	     * '1', '2', '3', '4'.
-	     * More natuarally this list would grow dynamically depending on
+	     * More naturally this list would grow dynamically depending on
 	     * some system attributes. The list can vary from call to call.
 	     */
 	    *list = TE_STRDUP("1 2 3 4");
@@ -241,13 +241,13 @@ Implementation of handlers for ``col_object`` might look like the following:
 	    return 0;
 	}
 
-Collection nodes can support synamic add/del operations which require implementation of corresponding handlers:
+Collection nodes can support dynamic add/del operations which require implementation of corresponding handlers:
 
 .. ref-code-block:: c
 
 	RCF_PCH_CFG_NODE_COLLECTION(col_node, "col_object",
 	                            &col_obj_var, /* son node */
-	                            &rw_node, /* bother node (neighbor node) */
+	                            &rw_node, /* brother node (neighbor node) */
 	                            col_add, col_del, col_list, NULL);
 
 	static te_errno
@@ -311,7 +311,7 @@ Usually the commit function is specified in parent node and children nodes refer
 	                     &col_node);
 	RCF_PCH_CFG_NODE_COLLECTION(col_node, "col_object",
 	                            &col_obj_var1, /* son node */
-	                            &rw_node, /* bother node (neighbor node) */
+	                            &rw_node, /* brother node (neighbor node) */
 	                            col_add, col_del, col_list, col_commit);
 
 Please note that add/del/set handlers have no way to detect what the calling mode takes place (immediate commit or postponed commit). The only thing to keep in mind is that commit will be called anyway.

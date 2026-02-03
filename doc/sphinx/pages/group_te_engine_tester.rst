@@ -177,7 +177,7 @@ In the above example we tell :ref:`Tester <doxid-group__te__engine__tester>` :
 
 * to build a test suite located under ${TE_TS_IPV6_HOST} directory. :ref:`Tester <doxid-group__te__engine__tester>` will ask :ref:`Builder <doxid-group__te__engine__builder>` to build and install this test suite;
 
-* to associate a directory ${TE_TS_IPV6_ROUTER_BIN} with installed version of test suite reffered as ipv6_router;
+* to associate a directory ${TE_TS_IPV6_ROUTER_BIN} with installed version of test suite referred as ipv6_router;
 
 * to run a test suite named ipv6_host (it will be run from the place where it is installed by :ref:`Builder <doxid-group__te__engine__builder>`);
 
@@ -279,7 +279,7 @@ This package description file has:
 
   In our case we have plain script directives that point to particular executables with names led_on_off and led_blink;
 
-* at the beginning of the session we define enumeration with enum TAG that we can later refer while specifying test parameters. In our sample we define enumeration type that can be reffered by name led_type;
+* at the beginning of the session we define enumeration with enum TAG that we can later refer while specifying test parameters. In our sample we define enumeration type that can be referred by name led_type;
 
 * we refer to enumeration type inside run TAG when specify parameters for scripts. In our case we define parameter led that has values of type led_type, which means the same executable will be run as many number of times as the number of possible values in type led_type.
 

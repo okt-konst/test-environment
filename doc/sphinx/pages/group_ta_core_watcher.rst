@@ -78,7 +78,7 @@ If multiple Test Agents are run on the same host (each may be run by
 a different testing session), core watchers can be run simultaneously for
 all of them. Every core watcher will print logs only about binaries located
 in specific TA directory, ignoring other core dumps. However if core pattern
-change is requested, only one of the simultanously running core watchers
+change is requested, only one of the simultaneously running core watchers
 will be able to change it.
 
 **WARNING:** core watcher is not compatible with setting core pattern via
