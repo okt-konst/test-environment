@@ -27,7 +27,7 @@ Build options
 
 To compile the agents with support of serial console parsing framework should be added option **–with-serialparse** to agent type options:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: none
 
 	TE_TA_TYPE([linux], [], [unix], [--with-serialparse], [], [], [], [])
 
@@ -42,13 +42,13 @@ Configurator objects
 
 The TE has auxiliary configuration file **cs.conf.serial** with configurator objects for the serial parser management. The file should be included to the config:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<xi:include href="cs.conf.serial" parse="xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
 
 To use event handlers the instance **/local:** should be added and value of the instance **/local:/tester:/enable:** should be set to **1**. The last to launch the thread on the Tester to handle events.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	<history>
@@ -91,7 +91,7 @@ Configurator
 
 To logging serial console messages to the main log, insert the following code to the configuration file. The code launches a new thread on the agent **Agt_A**. The thread establishes connection with a serial console named **console_name** by port **3105** and gathers messages from the console. **my_parser** is name of the parser.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<add>
 	  <instance oid="/agent:Agt_A/parser:my_parser" value="console_name"/>
@@ -103,7 +103,7 @@ To logging serial console messages to the main log, insert the following code to
 
 User can enable, disable or set of message level value of the logging:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<set>
 	  <instance oid="/agent:Agt_A/parser:my_parser/logging:/level:" value="RING"/>
@@ -123,7 +123,7 @@ Test API
 
 The second way to launch logging of the serial console is a using of the **Test API**. See the following code example to launch the same parser as before, but from a **test** :
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	#include "tapi_serial_parse.h"
 
@@ -150,7 +150,7 @@ RCF
 
 **RCF API** also can be used to launch logging thread. In this case the thread will be launched without any participation of Configurator. See the following example.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	<rcf>
@@ -190,7 +190,7 @@ Configurator
 
 There is example how to add a parser with events via configuration file:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	<history>
@@ -228,7 +228,7 @@ Test API
 
 The second way to handle events is using the **Test API**. See the following code example to launch the same parser as before, but from a test:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	#include "tapi_serial_parse.h"
 
@@ -379,7 +379,7 @@ OID                          Type    Description
 
 Configuration exmaple:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	  <history>
@@ -427,7 +427,7 @@ The Test API provides the possibilities to add, delete, configure and manage the
 
 **Test API** uses a :ref:`tapi_parser_id <doxid-structtapi__parser__id>` structure to configure and control a parser:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	typedef struct tapi_parser_id {
 	    const char *ta;      /**< Test agent name */
@@ -440,7 +440,7 @@ The Test API provides the possibilities to add, delete, configure and manage the
 
 It is possible to initialize the **parser id** structure using the **TAPI**. In this case the structure should be cleaned after use, because **TAPI** function allocates memory. Use the :ref:`tapi_serial_id_cleanup() <doxid-group__tapi__conf__serial__parse_1ga77e9ef3c3fae27066d9b1d0ed845a0f5>` to cleanup the **id** structure. By default the **user** field value is **NULL**, it means in logs will use the default user - **tester**. Default port is **3109**, interval - **100** milliseconds. See the following example.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	#include "tapi_serial_parse.h"
 
@@ -454,7 +454,7 @@ It is possible to initialize the **parser id** structure using the **TAPI**. In 
 
 Test API using example:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	#include "tapi_serial_parse.h"
 

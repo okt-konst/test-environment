@@ -28,7 +28,7 @@ Macro TAPI_DECLARE_ROUTE_GATEWAY_PARAMS can be used to declare all test paramete
 
 After initializing route gateway, use :ref:`tapi_route_gateway_configure() <doxid-group__ts__tapi__route__gw_1ga777597392d0e6b782559c646b1b601ae>` to configure forwarding through gateway host. It creates two routes, from IUT to Tester on IUT and from Tester to IUT on Tester, and enables IPv4 forwarding on gateway host.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	TAPI_DECLARE_ROUTE_GATEWAY_PARAMS;
 
@@ -87,7 +87,7 @@ Destroying route gateway configuration
 
 Currently there is no method to destroy route gateway configuration. It is supposed that Configurator will do it in cleanup; to prevent test fail due to changed configuration, use track_conf attribute in package.xml:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<script name="derived_epoll" track_conf="silent"/>
 
@@ -100,7 +100,7 @@ Currently there is no method to destroy route gateway configuration. It is suppo
 Example
 ~~~~~~~
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	int
 	main(int argc, char *argv[])

@@ -46,7 +46,7 @@ For testing BSD vs Windows configuration we should use the following set-up:
 
 In this scenario :ref:`Remote Control Facility (RCF) <doxid-group__te__engine__rcf>` configuration file would look like:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	<rcf>
@@ -71,7 +71,7 @@ For testing BSD vs Linux configuration we should use the following set-up:
 
 In this scenario :ref:`Remote Control Facility (RCF) <doxid-group__te__engine__rcf>` configuration file would look like:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	<rcf>
@@ -224,7 +224,7 @@ Suppose you have the following test project directory structure:
 
 The content of ${PRJ_ROOT}/conf_ipv6/tester.conf is:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	<tester_cfg version="1.0">

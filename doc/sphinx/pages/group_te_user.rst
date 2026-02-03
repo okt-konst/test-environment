@@ -253,7 +253,7 @@ If you're dealing with existing test suite the file usualy was already written b
 
 For example builder.conf file for a sample test suite located under ${TE_BASE}/suites/ipv6-demo is following:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: none
 
 	#
 	# Builder configuration file for IPv6 Demo Test Suite.
@@ -294,7 +294,7 @@ Before building you **must** export TE_BASE environment variable that points to 
 
 As you usually work with one copy of Test Environment it is useful to add
 
-.. ref-code-block:: cpp
+.. ref-code-block:: shell
 
 	export TE_BASE=/path/to/TE_root_dir
 
