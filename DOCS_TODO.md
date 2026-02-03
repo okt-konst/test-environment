@@ -107,14 +107,9 @@ All 17 instances fixed across 9 files (2 others were fixed in section 2).
 
 ---
 
-## 5. Formatting Issues
+## 5. Formatting Issues -- DONE
 
-| File | Line | Problem |
-|------|------|---------|
-| `group_te_engine_dispatcher.rst` | 39 | Missing separator between `TE_INSTALL_SUITE` and its description. |
-| `group_te_netns.rst` | 238 | Malformed inline markup: `tapi_cfg_base_if\_\*` has incorrect escaping. |
-| `group_terminology.rst` | 26 | "DUT" label missing from table row. |
-| `group_confapi.rst` | 30, 54 | Informal text reference instead of `:ref:` cross-reference. |
+All 4 issues fixed.
 
 ---
 
@@ -187,7 +182,7 @@ RST documentation pages. Currently only Unix and Windows agents are documented.
 | ~~Incorrect content (factual errors)~~ | ~~8 distinct issues~~ DONE |
 | ~~Broken references/links~~ | ~~7 instances~~ DONE |
 | ~~Typos and spelling errors~~ | ~~17 instances across 13 files~~ DONE |
-| Formatting issues | 4 instances |
+| ~~Formatting issues~~ | ~~4 instances~~ DONE |
 | Missing TAPI module pages | 13 libraries |
 | Missing tool documentation | 4 tools |
 | Missing agent documentation | 3 agents |
