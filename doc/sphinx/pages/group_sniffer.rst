@@ -27,14 +27,14 @@ Build options
 
 To compile agents with support of the sniffer framework should be added option **with-sniffers** in two places. As described **TA** options and library options for the **rcfpch** library. See example:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: none
 
 	TE_LIB_PARMS([rcfpch], [], [], [--with-sniffers], [], [], [])
 	TE_TA_TYPE([linux], [], [unix], [--with-sniffers=yes], [], [], [], [])
 
 If are used a few platforms or agents types the options should be added for each agent and platform. If the TE is built with sniffer framework and some agents do not support the sniffer framework, then this agents should be built with **with-sniffers=sniffers_dummy** option. See example:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: none
 
 	TE_LIB_PARMS([rcfpch], [], [], [--with-sniffers], [], [], [])
 	# Agent with Power Unit support, it do not support the sniffer framework.
@@ -66,7 +66,7 @@ Configurator objects subtree
 
 Config file of the **Configurator** should contains the following objects subtrees:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	<history>
@@ -114,19 +114,19 @@ Sniffer can be started by few ways. Here some examples to launch sniffer. By def
 
 * Example to start the sniffer on the agent **Agt_B** for interface **eth0** using the **Dispatcher** options:
 
-  .. ref-code-block:: cpp
+  .. ref-code-block:: shell
 
   	./dispatcher.sh --sniff=Agt_B/eth0
 
 * It is possible to setup the started sniffer from cli. Now the sniffer will be have name **clisniff** and filter expression "ip and udp":
 
-  .. ref-code-block:: cpp
+  .. ref-code-block:: shell
 
   	./dispatcher.sh --sniff=Agt_B/eth0 --sniff-name=clisniff --sniff-filter="ip and udp"
 
 * To add and launch a sniffer from Configurator, should to describe the sniffer in the conf file of Configurator. There must be added the sniffer instance. To launch the sniffer **enable** field in the sniffer subtree should be set to 1. The example to add and launch the sniffer on the agent **Agt_A** for interface **lo** with name **mysniffer** :
 
-  .. ref-code-block:: cpp
+  .. ref-code-block:: xml
 
   	<add>
   	  <instance oid="/agent:Agt_A/interface:lo/sniffer:mysniffer" value="0"/>
@@ -137,7 +137,7 @@ Sniffer can be started by few ways. Here some examples to launch sniffer. By def
 
 * It is possible to start a sniffer from Test API. The example demonstrates how to add/del a new sniffer with name **newsniffer** for agent **Agt_B** on the interface **lo**. The sniffer will be use the filter expression "<b>ip and udp</b>" and overfill handle method for temporary files - **rotation**.
 
-  .. ref-code-block:: cpp
+  .. ref-code-block:: c
 
   	#include "tapi_sniffer.h"
 
@@ -221,21 +221,21 @@ Option                                         Description
 
 Example how to add and configure a sniffer:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: shell
 
 	./dispatcher.sh --sniff=Agt_B/eth0 --sniff-filter="ip and udp" --sniff-name=clisniff
 	--sniff-snaplen=500 --sniff-space=300 --sniff-fsize=3 --sniff-rotation=3
 
 Example how to configure **TEN** side capture logs polling settings and location:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: shell
 
 	./dispatcher.sh --sniff-log-name=%n_%i_%s_%a --sniff-log-size=500
 	--sniff-log-fsize=100 --sniff-log-period=150 --sniff-log-dir=/tmp
 
 If are you launch the sniffers by the command line options for an interfaces, should be sure that the interfaces are configuring, while Configurator processing the conf files. Otherwise, if the interfaces are configured later, for example in the prolog, should to use command line option **sniff-not-feed-conf** to configure and launch the sniffers later. To activate sniffers configurations at the right time can be used the **confapi**. Use the following code to launch command line sniffers when it is needed (e.g. in prolog):
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	char *te_sniff_csconf = getenv("TE_SNIFF_CSCONF");
 	if (te_sniff_csconf != NULL)
@@ -256,7 +256,7 @@ Environment **TE_SNIFF_TSHARK_OPTS** can be used to pass arbitrary options to **
 
 For example, the following option can be used to print absolute TCP sequence and ACK numbers instead of relative (by default):
 
-.. ref-code-block:: cpp
+.. ref-code-block:: shell
 
 	TE_SNIFF_TSHARK_OPTS="-o tcp.relative_sequence_numbers:FALSE"
 
@@ -309,7 +309,7 @@ snif_period            Period of taken logs from agents in milliseconds.
 
 Configuration file contains the set of default settings and set of user setting. Example of user settings setup is below.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<userSnifferSets>
 	     <snif_fname value="%a_%i_%n_%s"/>
@@ -357,7 +357,7 @@ OID                                             Description
 
 Example of subtree:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<set>
 	  <instance oid="/agent:Agt_A/sniffer_settings:/filter_exp_str:" value=""/>
@@ -394,7 +394,7 @@ OID                                              Description
 
 Example of subtree:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<add>
 	  <instance oid="/agent:Agt_A/interface:lo/sniffer:mysniffer" value="0"/>
@@ -429,7 +429,7 @@ The Test API provides ability add/remove sniffers, suspend/resume the work of sn
 
 The example below demonstrates how to add a new sniffer with name **newsniffer** for agent **Agt_B** on the interface **lo**. The sniffer will be use the filter expression **"ip and udp"** and overfill handle method for temporary files - **rotation**. After starting the sniffer is called a request to insert a marker packet. Then the work of the sniffer is suspended and renewable. And at the end the sniffer is removed.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	#include "tapi_sniffer.h"
 

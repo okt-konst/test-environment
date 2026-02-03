@@ -104,7 +104,7 @@ Some examples of test suite scenarios
 
 The minimal test suite scenario:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: yaml
 
 	groups:
 	  - group: new_ts
@@ -113,7 +113,7 @@ The minimal test suite scenario:
 
 The complex test suite scenario:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: yaml
 
 	groups:
 	- group: example_ts

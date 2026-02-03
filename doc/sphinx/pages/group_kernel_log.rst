@@ -29,7 +29,7 @@ Serial console can be logged directly only in Test Agent residing on the same ho
 
 To configure direct serial console logging, in :ref:`RCF Configuration File <doxid-group__te__engine__rcf_1te_engine_rcf_conf_file>` add a child **thread** tag to the **ta** tag corresponding to related Test Agent:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<thread name="log_serial" when="<!--if not void, thread will be created-->">
 	    <arg value="elrond"/><!-- Host name to be displayed in log -->
@@ -58,7 +58,7 @@ Using Conserver
 
 If you have configured Conserver, you can tell Test Agent to use it adding the following **thread** child in its tag in :ref:`RCF Configuration File <doxid-group__te__engine__rcf_1te_engine_rcf_conf_file>` :
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<thread name="log_serial" when="<!-- not used but should not be void-->">
 	    <arg value="elrond"/><!-- Host name to be displayed in log -->
@@ -84,7 +84,7 @@ Using Netconsole
 
 If kernel netconsole module is configured already then all you should do is to add in tag corresponding to Test Agent residing on the host to which netconsole sends logs in :ref:`RCF Configuration File <doxid-group__te__engine__rcf_1te_engine_rcf_conf_file>` the following:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<thread name="log_serial" when="<!--not used but should not be void-->">
 	    <arg value="elrond"/><!-- Host name to be displayed in log -->
@@ -99,7 +99,7 @@ If Logger resides on the host to which logs are sent, you can specify this tag i
 
 If netconsole kernel module is not configured and you wish to configure it from Test Agent automatically, in :ref:`Configurator Configuration File <doxid-group__te__engine__conf_1te_engine_conf_file>` add the following (replacing **Agt_A** with whatever you need):
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<register>
 	    <object oid="/agent/netconsole" access="read_create" type="string"/>

@@ -74,7 +74,7 @@ Example
 
 This is an example of using CSAP to receive and send TCP/IPv4/Ethernet packets.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	#include "te_defs.h"
 	#include "asn_usr.h"

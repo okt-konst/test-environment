@@ -145,7 +145,7 @@ Obtaining information about TCP connection
 Example
 ~~~~~~~
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	#include "tapi_tcp.h"
 	#include "tapi_route_gw.h"
