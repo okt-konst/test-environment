@@ -72,7 +72,9 @@ There is a new object to set log level value. The object **console_loglevel** is
 How to use
 ~~~~~~~~~~
 
-<note>The **loglevel** value should be a digit in the range 1-8. See the [[te:console_loglevel::table_of_levels\|Table of levels]] section. </note>
+.. note::
+
+   The **loglevel** value should be a digit in the range 1-8. See the :ref:`Table of levels <doxid-group__console__ll_1console_ll_intro_table>` section.
 
 
 

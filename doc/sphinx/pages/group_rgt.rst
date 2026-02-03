@@ -75,7 +75,7 @@ Example of text log:
 	Test path requested by user not found.
 	Path: foobar-ts/foo_package/mytest
 
-See  for details on the log format.
+See :ref:`Logs processing <doxid-group__rgt_1rgt_logs_processing>` for details on the log format.
 
 To generate text log one can usually use scripts/log.sh or log.sh wrapper script.
 
@@ -97,7 +97,7 @@ See example of the HTML log below:
 .. image:: /static/image/rgt_html_report.png
 	:alt: HTML report example
 
-On the left there is a test tree. Tests are groupped by packages. Inside package there may be several sessions. See  for details on the file format.
+On the left there is a test tree. Tests are groupped by packages. Inside package there may be several sessions. See :ref:`Log bundle <doxid-group__rgt_1rgt_log_bundle>` for details on the file format.
 
 If you click on a test on the left frame corresponding log will open on the right one.
 

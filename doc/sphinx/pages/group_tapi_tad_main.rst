@@ -32,7 +32,7 @@ Traffic Application Domain
 
 Traffic Application Domain (TAD) is a part of Remote Control Facility (RCF) which provides traffic transmission and receiving services on Test Agents. Any kind of data are considered as traffic. For example, IPv4 over Ethernet packet, CLI command or its output, SNMP request.
 
-Find details in the document: doc/hld/OKTL-HLD-0000236-TE_TAD.sxw
+.. The HLD document doc/hld/OKTL-HLD-0000236-TE_TAD.sxw is no longer available.
 
 |	:ref:`ARP<doxid-group__tapi__tad__arp>`
 |	:ref:`ATM<doxid-group__tapi__tad__atm>`

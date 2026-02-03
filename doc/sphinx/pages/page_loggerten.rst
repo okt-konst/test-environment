@@ -8,5 +8,5 @@
 Test Engine logger subsystem
 ============================
 
-* `Test Engine logger API <logger__ten_8h.html>`__
+* :ref:`Test Engine logger API <doxid-logger__ten_8h>`
 

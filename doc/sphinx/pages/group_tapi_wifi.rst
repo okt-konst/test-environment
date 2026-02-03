@@ -13,6 +13,7 @@ Test API to control Wi-Fi client
 
 	/generated/group_tapi_wifi_security.rst
 	/generated/group_tapi_wifi_wpa_supplicant.rst
+	/generated/group_tapi_wifi_wpa_cli.rst
 
 
 |	:ref:`Wi-Fi security<doxid-group__tapi__wifi__security>`
