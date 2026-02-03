@@ -49,15 +49,15 @@ Configuration model files were renamed from `.xml` to `.yml`.
   are five agent types: unix, win32, proxy, power-ctl, switch-ctl. Document or
   at least mention the other three.
 
-### 2.2 group_te_engine_dispatcher.rst
+### 2.2 group_te_engine_dispatcher.rst -- DONE
 
-- **Line 135**: Option `force` missing `--` prefix (should be `--force`).
-- **Lines 313, 316**: Options `test-wof` and `test-woc` missing `--` prefix.
-- **Line 388**: Incomplete default value: `sniff-snaplen ... By default: .`
-  (truncated). Actual default is unlimited.
-- **Line 403**: Hardcoded developer path `/home/aizrailev/te/caps`. Should be
-  `${TE_RUN_DIR}/caps`.
-- **Line 132**: Malformed usage line with spurious `=""` XML-like attributes.
+~~All 5 issues fixed:~~
+
+- ~~Malformed usage line with spurious `=""` XML-like attributes~~
+- ~~Option `force` missing `--` prefix~~
+- ~~Options `test-wof` and `test-woc` missing `--` prefix~~
+- ~~Incomplete `sniff-snaplen` default value (now "unlimited")~~
+- ~~Hardcoded developer path replaced with `${TE_RUN_DIR}/caps`~~
 
 ### 2.3 group_te_engine_rcf.rst
 
