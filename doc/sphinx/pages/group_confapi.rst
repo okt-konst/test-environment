@@ -27,7 +27,7 @@ Test scenarios should use functions exported via:
 
 * semantic based interface :ref:`TAPI: Test API for configuration nodes <doxid-group__tapi__conf>`.
 
-Here we will show how to play with samples discussed at te_agents_conf page.
+Here we will show how to play with samples discussed at :ref:`Test Agents: Creating new configuration nodes in Test Agent <doxid-group__te__agents__conf>` page.
 
 
 
@@ -51,7 +51,7 @@ Configuration file can also keep rules to add object instances, but these instan
 
 When :ref:`Configurator <doxid-group__te__engine__conf>` receives a reply with the list of object instance names it checks whether an instance name has corresponding object node in its local object tree. If yes, then it adds an instance into its instance configuration tree, otherwise it ignores an instance name and tests will not be able to access those instances until they register corresponding object nodes in :ref:`Configurator <doxid-group__te__engine__conf>` (see arrow [6]).
 
-Regarding an example described at te_agents_conf page, we should add the following lines into :ref:`Configurator <doxid-group__te__engine__conf>` configuration file to let :ref:`Configurator <doxid-group__te__engine__conf>` know about our new supported object instances:
+Regarding an example described at :ref:`Test Agents: Creating new configuration nodes in Test Agent <doxid-group__te__agents__conf>` page, we should add the following lines into :ref:`Configurator <doxid-group__te__engine__conf>` configuration file to let :ref:`Configurator <doxid-group__te__engine__conf>` know about our new supported object instances:
 
 .. ref-code-block:: xml
 

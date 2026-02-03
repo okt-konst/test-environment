@@ -36,7 +36,9 @@ During its operation :ref:`Dispatcher <doxid-group__te__engine__dispatcher>` set
 
   This variable is passed as the value of the prefix option to the main configure script. Moreover, its value is used when path variables for the search of headers and libraries are constructed. It may be set manually. If it is empty, it is set to the directory where the Dispatcher script is located (if the installed Dispatcher script is used) or to ${TE_BUILD}/inst (if the Dispatcher script from the source directory is used).
 
-* TE_INSTALL_SUITE User may export this variable to specify the location of Test Suite executables (for :ref:`Builder <doxid-group__te__engine__builder>` and :ref:`Tester <doxid-group__te__engine__tester>`). If this variable is empty, it is set automatically to ${TE_INSTALL}/suites.
+* TE_INSTALL_SUITE
+
+  User may export this variable to specify the location of Test Suite executables (for :ref:`Builder <doxid-group__te__engine__builder>` and :ref:`Tester <doxid-group__te__engine__tester>`). If this variable is empty, it is set automatically to ${TE_INSTALL}/suites.
 
 * TE_TMP
 

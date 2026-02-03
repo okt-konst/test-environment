@@ -23,7 +23,7 @@ Abbreviations
 API   Application Programming Interface
 CLI   Command Line Interface
 CSAP  Communication Service Access Point
-      Device Under Testing
+DUT   Device Under Testing
 LAN   Local Area Network
 
 RCF   Remote Control Facility

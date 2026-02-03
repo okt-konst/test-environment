@@ -235,7 +235,7 @@ Few simple rules to avoid extra headache:
 
 #. Fill in /local/host subtree accordingly to the step above in initial configs.
 
-#. Don't use Configurator API directly to setup things listed above. All the actions can be done using test API like tapi_cfg_base_if\_\* or tapi_netns\_\*. It helps to care about agent resources and other things like synchronization of subtree /local/host.
+#. Don't use Configurator API directly to setup things listed above. All the actions can be done using test API like ``tapi_cfg_base_if_*`` or ``tapi_netns_*``. It helps to care about agent resources and other things like synchronization of subtree /local/host.
 
 There is implemented test API which should simplify working with the tree, find details in :ref:`Agents, namespaces and interfaces relations <doxid-group__tapi__host__ns>`.
 
