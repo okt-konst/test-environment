@@ -129,10 +129,10 @@ The Dispatcher script accepts a lot of command-line options. Some of them are it
 .. code-block:: none
 
 
-	Usage: dispatcher.sh [<generic options>="">] [[<test options>=""> tests ]...
+	Usage: dispatcher.sh [<generic options>] [[<test options> tests ]...
 	Generic options:
 	  -q                            Suppress part of output messages
-	  force                       Never prompt
+	  --force                     Never prompt
 
 .. code-block:: none
 
@@ -310,10 +310,10 @@ The Dispatcher script accepts a lot of command-line options. Some of them are it
 
 	test-sigusr2-verdict        Handle the SIGUSR2 signal in test and stop it by TEST_VERDICT.
 	                              By default the SIGUSR2 handled like SIGINT, it stops testing.
-	test-wof                    Wait before jump to cleanup on test failure. Useful to
+	--test-wof                  Wait before jump to cleanup on test failure. Useful to
 	                              take a look at what's configured etc. Requires some
 	                              nodes in the /local:/test: tree.
-	test-woc                    Wait before jump to cleanup regardless of test result.
+	--test-woc                  Wait before jump to cleanup regardless of test result.
 
 .. code-block:: none
 
@@ -385,7 +385,7 @@ The Dispatcher script accepts a lot of command-line options. Some of them are it
 	sniff-name=<name>            Add for the sniffer a human-readable name.
 	sniff-snaplen=<val>          Add for the sniffer restriction on maximum
 	                               number of bytes to capture for one packet.
-	                               By default: .
+	                               By default: unlimited.
 	sniff-space=<val>            Add for the sniffer restriction on maximum
 	                               overall size of temporary files, Mb.
 	                               By default: 64 Mb.
@@ -400,7 +400,7 @@ The Dispatcher script accepts a lot of command-line options. Some of them are it
 	                               files for the sniffer to tail drop.
 	                               By default overfill handle method is rotation.
 	sniff-log-dir=<path>         Path to the :ref:`Test Engine <doxid-group__te__engine>` side capture files.
-	                               By default used: /home/aizrailev/te/caps.
+	                               By default used: ${TE_RUN_DIR}/caps.
 	sniff-log-name=<pattern>     :ref:`Test Engine <doxid-group__te__engine>` side log file naming pattern, the
 	                               following format specifies are supported:
 	                               %a : agent name
