@@ -24,7 +24,7 @@ Configuration tree
 
 To use this feature, you need to register command_monitor node and its children in configuration file of Configurator by adding in it
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<register>
 	    <object oid="/agent/command_monitor"
@@ -52,13 +52,13 @@ Test API
 
 You can start logging command output by executing
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	tapi_cfg_cmd_monitor_begin(ta_name, monitor_name, command, time_to_wait);
 
 and stop it with
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	tapi_cfg_cmd_monitor_end(ta_name, monitor_name);
 
@@ -66,7 +66,7 @@ Here **ta_name** is unique Test Agent name, **monitor_name** is monitor node nam
 
 For example,
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	tapi_cfg_cmd_monitor_begin(pco_iut->ta, "stackdump_monitor",
 	                           "/tmp/te_onload_stdump",
@@ -89,7 +89,7 @@ Inside package.xml you can specify command output logging by adding command_moni
 
 For example, if you want to run onload_stackdump and log its output every second for all the tests from some package when they are run with Onload library, you can add the command_monitor node in session child node of the package node:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	<package version="1.0">
@@ -122,7 +122,7 @@ Command line option
 
 You can use command line option **tester-cmd-monitor** when running dispatcher.sh(perhaps via run.sh of your test suite; it is eventually passed as **cmd-monitor** option to Tester).
 
-.. ref-code-block:: cpp
+.. ref-code-block:: shell
 
 	--tester-cmd-monitor="[ta_name,]time_to_wait:command"
 
@@ -130,7 +130,7 @@ You can use command line option **tester-cmd-monitor** when running dispatcher.s
 
 For example, to log onload_stackdump output every second while running sockapi-ts/iomux/many_sockets test:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: shell
 
 	./run.sh --cfg=l5elrond --tester-run=sockapi-ts/iomux/many_sockets -n
 	--tester-cmd-monitor="1000:$SFC_ONLOAD_GNU/tools/ip/onload_stackdump"

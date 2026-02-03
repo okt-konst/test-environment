@@ -63,7 +63,7 @@ Object ID                      Type     Description
 
 XML code to register objects:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<register>
 	  <object oid="/agent/namespace" access="read_only" type="none"/>
@@ -88,7 +88,7 @@ It is required to run Test Agent in a network namespace to manage its resources 
 
 The simplest way to run anything in a specified network namespace is using standard tools. For linux it is **ip netns** :
 
-.. ref-code-block:: cpp
+.. ref-code-block:: shell
 
 	ip netns exec <namespace name> <command>
 
@@ -140,7 +140,7 @@ Configuration example
 
 The following code can be executed for example in test suite prologue.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	/*
 	 * The following code does:
@@ -205,7 +205,7 @@ Object ID                           Type       Description
 
 XML code to register objects:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<register>
 	  <object oid="/local/host" access="read_create" type="none"/>

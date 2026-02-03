@@ -53,7 +53,7 @@ Configurator object
 
 There is a new object to set log level value. The object **console_loglevel** is located on the **/agent/sys** subtree. Make sure that the objects are registered:
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<?xml version="1.0"?>
 	<history>
@@ -83,7 +83,7 @@ Configurator
 
 To set a console log level - write the level number as value field of instance. See the following example.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: xml
 
 	<set>
 	  <instance oid="/agent:Agt_A/sys:/console_loglevel:" value="4"/>
@@ -100,7 +100,7 @@ Test API
 
 Also can be used the Test API function shown below.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	/**
 	 * Set the console log level
@@ -125,7 +125,7 @@ Example
 
 The example demonstrates how to change the console log level from **test**.
 
-.. ref-code-block:: cpp
+.. ref-code-block:: c
 
 	#include "tapi_cfg.h"
 
