@@ -427,25 +427,29 @@ Here are few examples of configuration strings suitable for :ref:`RCF UNIX Commu
 
 * .. code-block:: xml
 
-
-    <ta name="Agt_A" type="linux" rcflib="rcfunix"
-        confstr=":12000::"/>
+    <ta name="Agt_A" type="linux" rcflib="rcfunix">
+        <conf name="port">12000</conf>
+    </ta>
 
   will run Test Agent on localhost host with user privileges, TCP server will be bound to port 12000;
 
 * .. code-block:: xml
 
-
-    <ta name="Agt_A" type="linux" rcflib="rcfunix"
-        confstr=":12000::valgrind --tool=helgrind:"/>
+    <ta name="Agt_A" type="linux" rcflib="rcfunix">
+        <conf name="port">12000</conf>
+        <conf name="shell">valgrind --tool=helgrind</conf>
+    </ta>
 
   will run Test Agent on localhost host with user privileges, TCP server will be bound to port 12000, the Test Agent will be run under valgrind with a data-race detection tool;
 
 * .. code-block:: xml
 
-
-    <ta name="Agt_A" type="linux" rcflib="rcfunix"
-        confstr="loki:12000:sudo:valgrind --tool=memcheck --num-callers=32:"/>
+    <ta name="Agt_A" type="linux" rcflib="rcfunix">
+        <conf name="host">loki</conf>
+        <conf name="port">12000</conf>
+        <conf name="sudo"/>
+        <conf name="shell">valgrind --tool=memcheck --num-callers=32</conf>
+    </ta>
 
   will run Test Agent on loki host with root privileges. The Test Agent will be run under valgrind with memory checking tool and 32-depth call backtrace.
 
