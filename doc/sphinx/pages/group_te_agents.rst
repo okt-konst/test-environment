@@ -32,9 +32,13 @@ At the time or writing this document TE has Test Agents available for the follow
 
 * Linux;
 
-* FreBSD;
-
 * Windows.
+
+.. note::
+
+   There are also special-purpose agents: proxy (for test isolation),
+   power-ctl (device power management), and switch-ctl (network switch
+   control).
 
 
 
@@ -132,11 +136,17 @@ Functions declared in ``lib/rcfpch/rcf_ch_api.h`` should be exported by a Test A
 Types of supported Test Agents
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Currently we support two main types of te_agents:
+Currently TE includes the following agent types:
+
+* :ref:`Test Agents: Unix Test Agent <doxid-group__te__agents__unix>` - the primary agent for Linux systems;
 
 * :ref:`Test Agents: Windows Test Agent <doxid-group__te__agents__win>`;
 
-* :ref:`Test Agents: Unix Test Agent <doxid-group__te__agents__unix>`.
+* Proxy agent (``agents/proxy/``) - for test isolation;
+
+* Power-ctl agent (``agents/power-ctl/``) - for device power management;
+
+* Switch-ctl agent (``agents/switch-ctl/``) - for network switch control.
 
 
 
