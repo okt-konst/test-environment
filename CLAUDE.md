@@ -186,6 +186,172 @@ Auto-generated from C header files (`.h`). This is the primary API reference.
 
 Follow the [OKTET Labs C Style Guide](https://github.com/oktetlabs/styleguides/blob/master/cguide.md).
 
+### C Formatting Quick Reference
+
+**Indentation and line length:**
+- 4 spaces per level (no tabs)
+- Max 80 characters per line; aim for 60-70 in new code
+
+**Braces** get their own line everywhere except `do...while`:
+
+```c
+/* Functions: return type on its own line, brace on its own line */
+te_errno
+te_example_func(int arg)
+{
+    ...
+}
+
+/* Control structures: brace on its own line */
+if (rc != 0)
+{
+    ERROR("failed");
+    return rc;
+}
+else
+{
+    INFO("ok");
+}
+
+/* Exception: do...while closing brace shares line with while */
+do {
+    rc = try_again();
+} while (rc == TE_EAGAIN);
+
+/* switch: case labels indented once from switch */
+switch (op)
+{
+    case OP_ADD:
+        result = a + b;
+        break;
+
+    default:
+        result = 0;
+        break;
+}
+```
+
+**Function signatures** - return type on a separate line, parameters
+aligned to the opening parenthesis when wrapping:
+
+```c
+static te_errno
+long_function_name(const char *name, size_t len,
+                   te_string *result)
+{
+    ...
+}
+```
+
+**Pointers** - asterisk with the variable name, not the type:
+
+```c
+char   *ptr;
+const char *fmt;
+```
+
+**Spacing:**
+- Space after keywords (`if`, `for`, `while`, `switch`, `return`)
+- Space around binary operators (`a + b`, `x == 0`, `i < n`)
+- No space after unary operators (`!flag`, `*ptr`, `&var`, `-1`)
+- No space before `(` in function calls: `func(arg)`
+- Space after `,` in argument lists: `func(a, b, c)`
+
+**Comments** - always `/* */`, never `//`:
+
+```c
+/* Single-line comment */
+
+/*
+ * Multi-line comment explaining
+ * non-obvious logic.
+ */
+```
+
+**Doxygen** - use `/** */` with `@` tags:
+
+```c
+/** @file
+ * @brief Brief module description
+ *
+ * @defgroup group_name Human-Readable Name
+ * @{
+ */
+
+/**
+ * Brief function description.
+ *
+ * @param name    Parameter description.
+ * @param[out] result  Output parameter.
+ *
+ * @return Status code.
+ * @retval 0            Success.
+ * @retval TE_ENOENT    Not found.
+ */
+te_errno
+te_example_lookup(const char *name, int *result);
+
+/** @} */
+```
+
+**Struct/enum formatting** - fields aligned, inline docs with `/**< */`:
+
+```c
+typedef struct te_example {
+    char   *name;       /**< Human-readable name */
+    size_t  size;       /**< Buffer size */
+    bool    active;     /**< Whether currently in use */
+} te_example;
+
+typedef enum te_example_mode {
+    TE_EXAMPLE_MODE_AUTO,       /**< Automatic selection */
+    TE_EXAMPLE_MODE_MANUAL,     /**< Manual override */
+} te_example_mode;
+```
+
+**Header guards** - double-underscore style:
+
+```c
+#ifndef __TE_EXAMPLE_H__
+#define __TE_EXAMPLE_H__
+...
+#endif /* !__TE_EXAMPLE_H__ */
+```
+
+**Include ordering:**
+1. `"te_config.h"` (always first in `.c` files)
+2. System headers (`<stdio.h>`, `<sys/types.h>`)
+3. Project headers (`"te_defs.h"`, `"logger_api.h"`)
+
+**Macros** - uppercase, parameters in parentheses, trailing underscore
+on parameter names to avoid shadowing:
+
+```c
+#define TE_EXAMPLE_INIT(size_) \
+    { .name = NULL, .size = (size_), .active = false }
+```
+
+**One declaration per line, one statement per line.** Declare variables
+where first used (C99 style is acceptable):
+
+```c
+size_t  len = strlen(name);
+char   *copy = TE_STRDUP(name);
+```
+
+**File headers** - SPDX on line 1, then Doxygen file block with copyright:
+
+```c
+/* SPDX-License-Identifier: Apache-2.0 */
+/** @file
+ * @brief Brief description of the module
+ *
+ * Detailed description if needed.
+ *
+ * Copyright (C) 2024 OKTET Labs Ltd. All rights reserved.
+ */
+```
+
 ### Naming Prefixes (mandatory for externally visible entities)
 
 | Prefix | Scope | Example Modules |
