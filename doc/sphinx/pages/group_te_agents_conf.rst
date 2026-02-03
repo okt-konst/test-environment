@@ -236,9 +236,7 @@ Implementation of handlers for ``col_object`` might look like the following:
 	     * More natuarally this list would grow dynamically depending on
 	     * some system attributes. The list can vary from call to call.
 	     */
-	    *list = strdup("1 2 3 4");
-	    if (*list == NULL)
-	        TE_RC(TE_TA_UNIX, TE_ENOMEM);
+	    *list = TE_STRDUP("1 2 3 4");
 
 	    return 0;
 	}
