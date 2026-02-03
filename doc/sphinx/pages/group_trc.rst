@@ -72,7 +72,7 @@ Result explanation
 
 Run(total)            Total number of iterations executed.
 Passed, as expected   Number of tests which were expected to pass and passed
-Failed, as expected   Number of tests which were expected to pass and passed
+Failed, as expected   Number of tests which were expected to fail and failed
 Passed unexpectedly   Number of tests which were not expected to pass but passed. For instance because the bug got fixed and TRC was not udpated. Or because certain SW version has a known problem.
 Failed unexpectedly   Number of tests which were not expected to fail but failed. The usual failures
 Aborted               Will appear if test was kiled with Ctrl-C or by a signal; tests which died of SEGFAULT signal are also considered as aborted.
