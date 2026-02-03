@@ -22,7 +22,7 @@ The most functional and frequently used agent type is UNIX Agent. Even though it
 
 Sources of UNIX Test Agent can be found under agents/unix directory of TE tree.
 
-Unix Test Egent supports the following features:
+Unix Test Agent supports the following features:
 
 * RPC Server functionality;
 
@@ -61,13 +61,9 @@ Source organization
 
 The sources of UNIX Test Agent located under agents/unix directory of TE tree:
 
-* agents/unix/rpc - implementation of RPC Server calls.
-
-  Please refer to :ref:`RPC Development Framework <doxid-group__te__lib__rpc__tapi_1tapi_rpc_lib_framework>` for the details on how to add new RPC calls into :ref:`Test Agents <doxid-group__te__agents>`;
-
 * agents/unix/main.c - implementation of entry point of Test Agent as well as functions of RCF PCH interface;
 
-* agents/unix/conf implementation of configuration nodes for UNIX Test Agent:
+* agents/unix/conf - implementation of configuration nodes for UNIX Test Agent:
 
   * agents/unix/conf/base - support of base configuration nodes (network interface configuration);
 
@@ -77,5 +73,18 @@ The sources of UNIX Test Agent located under agents/unix directory of TE tree:
 
   * agents/unix/conf/util - support of configuration models of external utilities integrated in TE (sniffer);
 
+  * agents/unix/conf/ovs - Open vSwitch configuration;
+
+  * agents/unix/conf/process - process management configuration;
+
+  * agents/unix/conf/rule - IP rule configuration;
+
+  * agents/unix/conf/tc - traffic control (tc) configuration;
+
+  * agents/unix/conf/vm - virtual machine configuration;
+
   Please refer to :ref:`Test Agents: Creating new configuration nodes in Test Agent <doxid-group__te__agents__conf>` for the details on how to add new configuration nodes into :ref:`Test Agents <doxid-group__te__agents>`.
+
+* RPC Server calls are implemented in libraries under ``lib/rpcserver/`` and ``lib/tapi_rpc/``.
+  Please refer to :ref:`RPC Development Framework <doxid-group__te__lib__rpc__tapi_1tapi_rpc_lib_framework>` for the details on how to add new RPC calls into :ref:`Test Agents <doxid-group__te__agents>`.
 
