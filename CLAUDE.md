@@ -348,7 +348,7 @@ char   *copy = TE_STRDUP(name);
  *
  * Detailed description if needed.
  *
- * Copyright (C) 2024 OKTET Labs Ltd. All rights reserved.
+ * Copyright (C) 2024 OKTET LTD. All rights reserved.
  */
 ```
 
@@ -447,7 +447,7 @@ addition of function attributes.
 
 ```c
 /* SPDX-License-Identifier: Apache-2.0 */
-/* Copyright (C) 2024 Your Organization. All rights reserved. */
+/* Copyright (C) 2024 OKTET LTD. All rights reserved. */
 ```
 
 ## Architecture Quick Reference
