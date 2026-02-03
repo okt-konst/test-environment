@@ -7,22 +7,26 @@ codebase. Organized by priority.
 
 ## 1. Systemic Issues (affect many files)
 
-### 1.1 Wrong code-block language tags
+### 1.1 Wrong code-block language tags -- DONE
 
-50+ code blocks use `.. ref-code-block:: cpp` for XML, YAML, or C content.
+~~50+ code blocks use `.. ref-code-block:: cpp` for XML, YAML, or C content.~~
 
-| File | Lines | Actual content | Correct tag |
-|------|-------|----------------|-------------|
-| `group_sniffer.rst` | 30, 37, 69, 117, 129, 140, 224, 259, 312, 360, 397 | XML | `xml` |
-| `group_serial.rst` | 30, 45, 51, 94, 106, 117, 129, 140, 193, 224, 231, 238, 312, 360, 382, 430, 443, 457 | XML | `xml` |
-| `group_kernel_log.rst` | 32, 61, 87 | XML | `xml` |
-| `group_console_ll.rst` | 56, 86, 128 | XML | `xml` |
-| `group_te_cmd_monitor.rst` | 27, 56, 69, 92, 125 | XML | `xml` |
-| `group_te_netns.rst` | 66, 91, 143, 208 | XML | `xml` |
-| `group_te_scenarios.rst` | 107, 116 | YAML | `yaml` |
-| `group_csap.rst` | 77 | C | `c` |
-| `group_route_gw.rst` | 31, 90, 103 | C | `c` |
-| `group_tcp_sock_emulation.rst` | 148 | C | `c` |
+All fixed. Changed `cpp` to the correct language (`xml`, `yaml`, `c`, `shell`,
+or `none`) across all 10 files plus 5 additional files found during the fix:
+
+- `group_sniffer.rst` (15 blocks)
+- `group_serial.rst` (18 blocks)
+- `group_kernel_log.rst` (4 blocks)
+- `group_console_ll.rst` (4 blocks)
+- `group_te_cmd_monitor.rst` (7 blocks)
+- `group_te_netns.rst` (4 blocks)
+- `group_te_scenarios.rst` (2 blocks)
+- `group_csap.rst` (1 block)
+- `group_route_gw.rst` (3 blocks)
+- `group_tcp_sock_emulation.rst` (1 block)
+- `group_te_ts.rst` (18 blocks)
+- `group_te_user.rst` (2 blocks)
+- `group_te_user_run_details.rst` (3 blocks)
 
 ### 1.2 Outdated XML file references (should be YAML)
 
@@ -89,17 +93,20 @@ Configuration model files were renamed from `.xml` to `.yml`.
 
 ---
 
-## 3. Broken References and Links
+## 3. Broken References and Links -- DONE
 
-| File | Line | Problem |
-|------|------|---------|
-| `group_rgt.rst` | 78 | Empty reference: "See  for details on the log format." |
-| `group_rgt.rst` | 100 | Empty reference: "See  for details on the file format." |
-| `group_te_user.rst` | 330 | `@te_user_run` is not valid Sphinx syntax. Use `:ref:`. |
-| `group_console_ll.rst` | 75 | MediaWiki syntax `[[te:console_loglevel::...]]` instead of RST `:ref:`. |
-| `page_loggerten.rst` | 11 | Hardcoded HTML path `logger__ten_8h.html` may not exist. |
-| `group_tapi_tad_main.rst` | 22 | Toctree path `group_tapi_tad_ipstack.rst` missing `/generated/` prefix. |
-| `group_tapi_wifi.rst` | 14-20 | Module `tapi_wifi_wpa_cli` exists but is not in the toctree. |
+All 7 instances fixed:
+
+- `group_rgt.rst`: filled empty cross-references with `:ref:` links to
+  "Logs processing" and "Log bundle" sections
+- `group_te_user.rst`: replaced `@te_user_run` with `:ref:` to TE Execution
+- `group_console_ll.rst`: converted MediaWiki `[[...]]` and HTML `<note>` to
+  RST `.. note::` directive with `:ref:` cross-reference
+- `page_loggerten.rst`: replaced hardcoded HTML link with `:ref:` anchor
+- `group_tapi_tad_main.rst`: commented out reference to non-existent HLD
+  document; toctree path for `group_tapi_tad_ipstack.rst` is correct (file
+  is in `pages/`, not `generated/`)
+- `group_tapi_wifi.rst`: added missing `tapi_wifi_wpa_cli` module to toctree
 
 ---
 
@@ -198,10 +205,10 @@ RST documentation pages. Currently only Unix and Windows agents are documented.
 
 | Category | Count |
 |----------|-------|
-| Wrong code-block language tags | 50+ instances across 10 files |
+| ~~Wrong code-block language tags~~ | ~~50+ instances across 10 files~~ DONE |
 | Outdated XML-to-YAML references | 2 files |
 | Incorrect content (factual errors) | 8 distinct issues |
-| Broken references/links | 7 instances |
+| ~~Broken references/links~~ | ~~7 instances~~ DONE |
 | Typos and spelling errors | 17 instances across 13 files |
 | Formatting issues | 4 instances |
 | Missing TAPI module pages | 13 libraries |
