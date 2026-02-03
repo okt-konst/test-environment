@@ -101,23 +101,9 @@ All 7 instances fixed:
 
 ---
 
-## 4. Typos and Spelling Errors
+## 4. Typos and Spelling Errors -- DONE
 
-| File | Line | Error | Correction |
-|------|------|-------|------------|
-| `group_te_engine_rcf.rst` | 261, 263 | "possile" | "possible" |
-| `group_te_engine_builder.rst` | 197 | "reffered" | "referred" |
-| `group_te_engine_tester.rst` | 180, 282 | "reffered" | "referred" |
-| `group_te_agents.rst` | 31 | "FreBSD" | "FreeBSD" |
-| `group_te_agents_unix.rst` | 25 | "Unix Test Egent" | "Unix Test Agent" |
-| `group_te_agents_conf.rst` | 109, 252, 316 | "bother node" | "brother node" |
-| `group_te_agents_conf.rst` | 236 | "natuarally" | "naturally" |
-| `group_te_agents_conf.rst` | 246 | "synamic" | "dynamic" |
-| `group_ta_core_watcher.rst` | 81 | "simultanously" | "simultaneously" |
-| `group_te_lib_tapi_conf_net.rst` | 21 | "phisical" | "physical" |
-| `group_te_tools.rst` | 51 | "Dymanic array" | "Dynamic array" |
-| `page_asn.rst` | 19 | "nevetheless" | "nevertheless" |
-| `add_doc.rst` | 26 | "doc/shpinx/pages" | "doc/sphinx/pages" |
+All 17 instances fixed across 9 files (2 others were fixed in section 2).
 
 ---
 
@@ -200,7 +186,7 @@ RST documentation pages. Currently only Unix and Windows agents are documented.
 | Outdated XML-to-YAML references | 2 files |
 | ~~Incorrect content (factual errors)~~ | ~~8 distinct issues~~ DONE |
 | ~~Broken references/links~~ | ~~7 instances~~ DONE |
-| Typos and spelling errors | 17 instances across 13 files |
+| ~~Typos and spelling errors~~ | ~~17 instances across 13 files~~ DONE |
 | Formatting issues | 4 instances |
 | Missing TAPI module pages | 13 libraries |
 | Missing tool documentation | 4 tools |
