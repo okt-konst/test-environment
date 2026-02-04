@@ -54,7 +54,7 @@ The sources of Windows Test Agent located under agents/win32 directory of TE tre
 Supported configuration tree
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Windows Test Agent supports minimized version of basic configuration doc/cm/cm_base.xml:
+Windows Test Agent supports minimized version of basic configuration doc/cm/cm_base.yml:
 
 .. image:: /static/image/ta_win32_conf_tree.png
 	:alt: Configuration subtree supported by Windows Test Agent
