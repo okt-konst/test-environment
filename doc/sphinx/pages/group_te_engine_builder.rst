@@ -204,22 +204,22 @@ For example:
 
 .. ref-code-block:: none
 
-	TE_PLATFORM([freebsd], [--host=i386-pc-freebsd6],
-	            [-I${FREEBSD6_HOME}/sys-include], [], [-L${FREEBSD6_HOME}/lib],
+	TE_PLATFORM([aarch64], [--host=aarch64-linux-gnu],
+	            [-I${AARCH64_HOME}/include], [], [-L${AARCH64_HOME}/lib],
 	            [tools conf_oid rpcxdr rpc_types asn ndn \
 	             comm_net_agent loggerta rcfpch tad])
 	#
-	# Define 'freebsd' platform and list libraries to
+	# Define 'aarch64' platform and list libraries to
 	# be built for this platform.
 	#
 
-	TE_TA_TYPE([freebsd6], [freebsd], [unix],
+	TE_TA_TYPE([aarch64], [aarch64], [unix],
 	           [--with-rcf-rpc], [], [], [],
 	           [comm_net_agent ndn asn])
 	#
-	# Test Agent of type 'freebsd6' requires 'comm_net_agent', 'ndn' and 'asn'
+	# Test Agent of type 'aarch64' requires 'comm_net_agent', 'ndn' and 'asn'
 	# libraries. These libraries are listed in TE_PLATFORM() directive for
-	# 'freebsd' platform among libraries to be built.
+	# 'aarch64' platform among libraries to be built.
 	#
 
 Here is a typical (but not exhaustive) set of libraries for building a Unix agent:
@@ -394,7 +394,6 @@ You can keep parts of builder configuration in separate files and merge them tog
 
 	include(builder.part.common)
 	include(builder.part.linux.platform)
-	include(builder.part.freebsd.platform)
 
 
 

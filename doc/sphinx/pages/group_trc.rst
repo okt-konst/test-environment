@@ -252,7 +252,7 @@ TRC supports logical expressions in the tags section, so the following examples 
 	<results tags="linux&amp;x86">
 	  <result value="FAILED"/>
 	</results>
-	<results tags="!freebsd|!windows">
+	<results tags="!aarch64|!windows">
 	  <result value="FAILED"/>
 	</results>
 
