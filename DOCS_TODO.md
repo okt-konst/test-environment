@@ -28,14 +28,13 @@ or `none`) across all 10 files plus 5 additional files found during the fix:
 - `group_te_user.rst` (2 blocks)
 - `group_te_user_run_details.rst` (3 blocks)
 
-### 1.2 Outdated XML file references (should be YAML)
+### 1.2 Outdated XML file references (should be YAML) -- DONE
 
-Configuration model files were renamed from `.xml` to `.yml`.
+~~Configuration model files were renamed from `.xml` to `.yml`.~~
 
-| File | Line | Current | Correct |
-|------|------|---------|---------|
-| `group_te_engine_conf.rst` | 79 | `cm_base.xml` | `cm_base.yml` |
-| `group_te_agents_win.rst` | 57 | `cm_base.xml` | `cm_base.yml` |
+Both references updated to `cm_base.yml`:
+- `group_te_engine_conf.rst`
+- `group_te_agents_win.rst`
 
 ---
 
