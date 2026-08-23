@@ -1377,7 +1377,7 @@ expand_args_append(expand_args *ea, te_string *dest, const char *src)
     }
 
     if (te_string_expand_kvpairs_strict(src, NULL, &ea->kvpairs,
-                                        &expanded) != 0)
+                                        &expanded, NULL) != 0)
     {
         WARN("%s(): failed to expand '%s', keeping it as is",
              __func__, src);
