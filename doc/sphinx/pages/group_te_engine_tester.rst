@@ -416,7 +416,9 @@ session variables of the run item. A compound value binds one name per
 field, spelled ``argument_field``, exactly as the fields appear among
 the logged parameters. For instance, if a run item is given a compound
 argument ``dev`` with fields ``pci`` and ``name``, its objective may
-refer to ``${dev_pci}`` and ``${dev_name}``.
+refer to ``${dev_pci}`` and ``${dev_name}``. A compound value binds no
+name for the argument as a whole, so a bare ``${dev}`` is reported as
+unresolvable instead of quietly expanding to nothing.
 
 The full expansion syntax implemented by ``lib/tools/te_expand.h`` is
 available, in particular ``${name:-default}`` and filters such as
