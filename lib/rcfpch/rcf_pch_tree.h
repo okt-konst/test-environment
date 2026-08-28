@@ -327,6 +327,44 @@ extern te_errno ta_conf_register(const char *father,
                   .children = TA_CONF_CHILDREN(__VA_ARGS__))
 
 /**
+ * Read-only base-0 unsigned integer leaf.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_uint)
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RO_UINT0(name_, get_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_UINT0, \
+                  .get = { .as_uint = (get_) }, \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Read-write base-0 unsigned integer leaf.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_uint)
+ * @param set_          set handler (as_uint)
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RW_UINT0(name_, get_, set_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_UINT0, \
+                  .get = { .as_uint = (get_) }, \
+                  .set = { .as_uint = (set_) }, \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Read-only signed integer leaf.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_int)
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RO_INT(name_, get_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_INT, \
+                  .get = { .as_int = (get_) }, \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
  * Read-write signed integer leaf.
  *
  * @param name_         node's Configurator sub-identifier
@@ -338,6 +376,18 @@ extern te_errno ta_conf_register(const char *father,
     TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_INT, \
                   .get = { .as_int = (get_) }, \
                   .set = { .as_int = (set_) }, \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Read-only hexadecimal unsigned leaf.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_uint)
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RO_HEX32(name_, get_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_HEX32, \
+                  .get = { .as_uint = (get_) }, \
                   .children = TA_CONF_CHILDREN(__VA_ARGS__))
 
 /**
@@ -355,6 +405,18 @@ extern te_errno ta_conf_register(const char *father,
                   .children = TA_CONF_CHILDREN(__VA_ARGS__))
 
 /**
+ * Read-only boolean leaf.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_bool)
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RO_BOOL(name_, get_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_BOOL, \
+                  .get = { .as_bool = (get_) }, \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
  * Read-write boolean leaf.
  *
  * @param name_         node's Configurator sub-identifier
@@ -366,6 +428,21 @@ extern te_errno ta_conf_register(const char *father,
     TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_BOOL, \
                   .get = { .as_bool = (get_) }, \
                   .set = { .as_bool = (set_) }, \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Read-only enumerated leaf mapped through @p map_.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param map_          te_enum_map used to convert between the
+ *                      wire string and the C int value
+ * @param get_          get handler (as_enum)
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RO_ENUM(name_, map_, get_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_ENUM, \
+                  .map = (map_), \
+                  .get = { .as_enum = (get_) }, \
                   .children = TA_CONF_CHILDREN(__VA_ARGS__))
 
 /**
@@ -418,6 +495,89 @@ extern te_errno ta_conf_register(const char *father,
                   .children = TA_CONF_CHILDREN(__VA_ARGS__))
 
 /**
+ * Fully read-write string-valued collection (get/set/add/del/list).
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_str)
+ * @param set_          set handler (as_str)
+ * @param add_          add handler (as_str)
+ * @param del_          delete handler
+ * @param list_         list handler
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_COLL_STR_RW(name_, get_, set_, add_, del_, list_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_STR, \
+                  .get = { .as_str = (get_) }, \
+                  .set = { .as_str = (set_) }, \
+                  .add = { .as_str = (add_) }, .del = (del_), \
+                  .list = (list_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Fully read-write signed integer-valued collection
+ * (get/set/add/del/list).
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_int)
+ * @param set_          set handler (as_int)
+ * @param add_          add handler (as_int)
+ * @param del_          delete handler
+ * @param list_         list handler
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_COLL_INT_RW(name_, get_, set_, add_, del_, list_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_INT, \
+                  .get = { .as_int = (get_) }, \
+                  .set = { .as_int = (set_) }, \
+                  .add = { .as_int = (add_) }, .del = (del_), \
+                  .list = (list_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Fully read-write string-valued collection (get/set/add/del/list)
+ * whose commit covers its subtree.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_str)
+ * @param set_          set handler (as_str)
+ * @param add_          add handler (as_str)
+ * @param del_          delete handler
+ * @param list_         list handler
+ * @param commit_       commit handler covering the subtree
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_COLL_STR_RW_COMMIT(name_, get_, set_, add_, del_, \
+                                   list_, commit_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_STR, \
+                  .get = { .as_str = (get_) }, \
+                  .set = { .as_str = (set_) }, \
+                  .add = { .as_str = (add_) }, .del = (del_), \
+                  .list = (list_), .commit = (commit_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Fully read-write base-0 unsigned integer-valued collection
+ * (get/set/add/del/list) whose commit covers its subtree.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_uint)
+ * @param set_          set handler (as_uint)
+ * @param add_          add handler (as_uint)
+ * @param del_          delete handler
+ * @param list_         list handler
+ * @param commit_       commit handler covering the subtree
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_COLL_UINT0_RW_COMMIT(name_, get_, set_, add_, del_, \
+                                     list_, commit_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_UINT0, \
+                  .get = { .as_uint = (get_) }, \
+                  .set = { .as_uint = (set_) }, \
+                  .add = { .as_uint = (add_) }, .del = (del_), \
+                  .list = (list_), .commit = (commit_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
  * Read-only string-valued collection (get/list).
  *
  * @param name_         node's Configurator sub-identifier
@@ -429,6 +589,119 @@ extern te_errno ta_conf_register(const char *father,
     TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_STR, \
                   .get = { .as_str = (get_) }, .list = (list_), \
                   .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Read-only signed integer-valued collection (get/list).
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_int)
+ * @param list_         list handler
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RO_COLL_INT(name_, get_, list_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_INT, \
+                  .get = { .as_int = (get_) }, .list = (list_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Read-only unsigned integer-valued collection (get/list).
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_uint)
+ * @param list_         list handler
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RO_COLL_UINT(name_, get_, list_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_UINT, \
+                  .get = { .as_uint = (get_) }, .list = (list_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Read-write string-valued collection with no add/del (get/set/list):
+ * instances are enumerable but not created or destroyed through this
+ * node (e.g. their identity comes from elsewhere), only read and
+ * written.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_str)
+ * @param set_          set handler (as_str)
+ * @param list_         list handler
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RW_COLL_STR(name_, get_, set_, list_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_STR, \
+                  .get = { .as_str = (get_) }, \
+                  .set = { .as_str = (set_) }, .list = (list_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Read-write unsigned integer-valued collection with no add/del
+ * (get/set/list): instances are enumerable but not created or
+ * destroyed through this node.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_uint)
+ * @param set_          set handler (as_uint)
+ * @param list_         list handler
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RW_COLL_UINT(name_, get_, set_, list_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_UINT, \
+                  .get = { .as_uint = (get_) }, \
+                  .set = { .as_uint = (set_) }, .list = (list_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * Read-write boolean-valued collection with no add/del (get/set/list):
+ * instances are enumerable but not created or destroyed through this
+ * node.
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param get_          get handler (as_bool)
+ * @param set_          set handler (as_bool)
+ * @param list_         list handler
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_RW_COLL_BOOL(name_, get_, set_, list_, ...) \
+    TA_CONF__NODE(.name = (name_), .type = TA_CONF_TYPE_BOOL, \
+                  .get = { .as_bool = (get_) }, \
+                  .set = { .as_bool = (set_) }, .list = (list_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/**
+ * List-only collection: no value, no add/del, just enumerable
+ * instances (e.g. a set of read-only sub-identifiers with no
+ * per-instance data of their own).
+ *
+ * @param name_         node's Configurator sub-identifier
+ * @param list_         list handler
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_LIST(name_, list_, ...) \
+    TA_CONF__NODE(.name = (name_), .list = (list_), \
+                  .children = TA_CONF_CHILDREN(__VA_ARGS__))
+
+/** @cond internal */
+#define TA_CONF__UNPAREN(...) __VA_ARGS__
+/** @endcond */
+
+/**
+ * Generic node, for shapes with no dedicated macro (odd handler
+ * combinations, .subst, etc.).  Unlike a hand-written literal of the
+ * form &(const ta_conf_node){ ..., .children = TA_CONF_CHILDREN(...) },
+ * the children passed here through @p ... are macro arguments of
+ * TA_CONF_NODE() itself, so macro-generated children (e.g. other
+ * TA_CONF_* node macros) are expanded before TA_CONF_CHILDREN() ever
+ * sees them, same as with every other node macro in this file.
+ *
+ * @param fields_       designated field initializers for the node,
+ *                      as a single parenthesized group, e.g.
+ *                      (.name = "x", .type = TA_CONF_TYPE_STR, ...)
+ * @param ...           child node pointers, in sibling order
+ */
+#define TA_CONF_NODE(fields_, ...) \
+    (&(const ta_conf_node){ TA_CONF__UNPAREN fields_, \
+                            .children = TA_CONF_CHILDREN(__VA_ARGS__) })
 
 #ifdef __cplusplus
 } /* extern "C" */
