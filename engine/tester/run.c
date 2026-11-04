@@ -4385,8 +4385,8 @@ run_repeat_start(run_item *ri, unsigned int cfg_id_off, unsigned int flags,
         quiet_skip = (~ctx->flags & TESTER_VERB_SKIP) &&
                      (ctx->flags & TESTER_QUIET_SKIP);
         required = tester_is_run_required(ctx->targets, &ctx->reqs,
-                                          ri, ctx->args, ctx->flags,
-                                          true);
+                                          ri, ctx->n_args, ctx->args,
+                                          ctx->flags, true);
         ri->plan_id = -1;
         if (required || !quiet_skip)
         {
@@ -4439,7 +4439,7 @@ run_repeat_start(run_item *ri, unsigned int cfg_id_off, unsigned int flags,
     {
         if (!(ctx->flags & TESTER_ONLY_REQ_LOGUES) ||
             tester_is_run_required(ctx->targets, &ctx->reqs,
-                                   ri, ctx->args, ctx->flags,
+                                   ri, ctx->n_args, ctx->args, ctx->flags,
                                    true))
         {
             if (ri->type == RUN_ITEM_SCRIPT &&
@@ -4469,15 +4469,15 @@ run_repeat_start(run_item *ri, unsigned int cfg_id_off, unsigned int flags,
         ((ctx->flags & TESTER_VERB_SKIP) ||
          (~ctx->flags & TESTER_QUIET_SKIP) ||
          tester_is_run_required(ctx->targets, &ctx->reqs,
-                                ri, ctx->args, ctx->flags,
+                                ri, ctx->n_args, ctx->args, ctx->flags,
                                 true)))
         gctx->plan_id++;
 
     /* Go inside skipped packages and sessions */
     if (gctx->force_skip > 0 && run_item_container(ri) &&
         tester_is_run_required(ctx->targets, &ctx->reqs,
-                                    ri, ctx->args, ctx->flags,
-                                    true))
+                               ri, ctx->n_args, ctx->args, ctx->flags,
+                               true))
     {
         ctx->current_result.status = TESTER_TEST_INCOMPLETE;
         ctx->group_step = true;
@@ -4491,7 +4491,8 @@ run_repeat_start(run_item *ri, unsigned int cfg_id_off, unsigned int flags,
         ((~ctx->flags & TESTER_VERB_SKIP) &&
          (ctx->flags & TESTER_QUIET_SKIP) &&
          !tester_is_run_required(ctx->targets, &ctx->reqs,
-                                 ri, ctx->args, ctx->flags, true)))
+                                 ri, ctx->n_args, ctx->args, ctx->flags,
+                                 true)))
     {
         /* Silently skip without any logs */
         ctx->current_result.status = TESTER_TEST_INCOMPLETE;
@@ -4517,7 +4518,8 @@ run_repeat_start(run_item *ri, unsigned int cfg_id_off, unsigned int flags,
     if (((ctx->flags & TESTER_VERB_SKIP) ||
         (~ctx->flags & TESTER_QUIET_SKIP)) &&
         !tester_is_run_required(ctx->targets, &ctx->reqs,
-                                ri, ctx->args, ctx->flags, false))
+                                ri, ctx->n_args, ctx->args, ctx->flags,
+                                false))
     {
         ctx->current_result.status = TESTER_TEST_SKIPPED;
         ctx->group_step = true;
