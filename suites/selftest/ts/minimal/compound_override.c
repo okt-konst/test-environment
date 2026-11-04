@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: Apache-2.0 */
-/* Copyright (C) 2025 OKTET Labs Ltd. All rights reserved. */
+/* Copyright (C) 2026 OKTET Labs Ltd. All rights reserved. */
 /** @file
  * @brief Plain argument overriding a field of a compound argument.
  *
