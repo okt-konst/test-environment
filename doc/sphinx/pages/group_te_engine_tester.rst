@@ -822,7 +822,9 @@ test, the log and the objective all see the field once, with the
 overriding value, and the TRC database sees it inside the compound
 argument, whose ``<iter>`` entry does not name the plain argument;
 requirements attached to the overriding value (``reqs``) apply to the
-iteration as usual.
+iteration as usual. The ``objective`` attribute of an overriding value
+is not carried over: it adds nothing to the iteration's objective,
+which can name the field instead (``${link_mtu}``).
 
 .. ref-code-block:: xml
 
