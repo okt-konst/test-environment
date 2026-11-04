@@ -754,14 +754,17 @@ one parameter per field: a named field is ``argument_field``, the
 items of an array are ``argument``, ``argument1``, ``argument2`` and so
 on, and a repeated named field ``argument_field``, ``argument_field1``.
 The run above starts the test with these parameters, and they are what
-the log, the TRC database and the ``--tester-run`` path selection
-operate on:
+the log shows and the ``--tester-run`` path selection operates on:
 
 .. code-block:: none
 
 
 	Starting test link_test   PASSED   <- link_speed=10G, link_duplex=full,
 	                                      link_mtu=1500, peers=peer1, peers1=peer2
+
+The TRC database, however, matches an iteration by the compound
+argument's own name: an ``<iter>`` for this run lists ``link`` and
+``peers``, not ``link_speed`` or ``peers1``.
 
 A C test reads the fields like any other parameters,
 ``TEST_GET_STRING_PARAM(link_speed)``, and an array with
@@ -815,9 +818,11 @@ argument the flattened name of that field: a plain argument named
 ``stem_field``, where ``stem`` is a compound argument of the same run
 item and ``field`` one of its single-valued named fields, replaces
 that field's value and is not passed as a parameter of its own. The
-test, the log, the TRC database and the objective all see the field
-once, with the overriding value; requirements attached to the
-overriding value (``reqs``) apply to the iteration as usual.
+test, the log and the objective all see the field once, with the
+overriding value, and the TRC database sees it inside the compound
+argument, whose ``<iter>`` entry does not name the plain argument;
+requirements attached to the overriding value (``reqs``) apply to the
+iteration as usual.
 
 .. ref-code-block:: xml
 
