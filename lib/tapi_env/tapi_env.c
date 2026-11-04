@@ -84,7 +84,8 @@ static te_errno bind_env_to_cfg_nets(tapi_env_ifs *ifs,
 static bool bind_host_if(tapi_env_if  *iface,
                             tapi_env_ifs *ifs,
                             cfg_nets_t   *cfg_nets,
-                            node_indexes *used_nodes);
+                            node_indexes *used_nodes,
+                            bool          by_name);
 
 static int cmp_agent_names(cfg_handle node1, cfg_handle node2);
 
@@ -2146,22 +2147,76 @@ prepare_pcos(tapi_env_hosts *hosts)
 }
 
 
+/**
+ * Find a configuration net by its instance name.
+ *
+ * @param cfg_nets      network model configuration
+ * @param name          name to look for, may be @c NULL
+ *
+ * @return Index of the net, or @c UINT_MAX if there is none.
+ */
+static unsigned int
+cfg_net_by_name(const cfg_nets_t *cfg_nets, const char *name)
+{
+    unsigned int i;
+
+    if (name == NULL)
+        return UINT_MAX;
+
+    for (i = 0; i < cfg_nets->n_nets; ++i)
+    {
+        if (cfg_nets->nets[i].name != NULL &&
+            strcmp(cfg_nets->nets[i].name, name) == 0)
+            return i;
+    }
+
+    return UINT_MAX;
+}
+
 static te_errno
 bind_env_to_cfg_nets(tapi_env_ifs *ifs, cfg_nets_t *cfg_nets)
 {
     te_errno        rc = 0;
     node_indexes    used_nodes;
     node_index     *p;
+    const char     *bind_by_name = getenv("TE_ENV_BIND_BY_NAME");
+    bool            by_name = (bind_by_name != NULL &&
+                               strcmp(bind_by_name, "yes") == 0);
 
     /* Initialize empty list with used nodes */
     SLIST_INIT(&used_nodes);
 
     /* Recursively bind all hosts */
-    if (!bind_host_if(ifs->cqh_first, ifs, cfg_nets, &used_nodes))
+    if (!bind_host_if(ifs->cqh_first, ifs, cfg_nets, &used_nodes, by_name))
     {
         ERROR("Failed to bind requested environment configuration to "
               "available network configuration");
         rc = TE_EENV;
+
+        if (by_name)
+        {
+            tapi_env_if    *iface;
+            tapi_env_if    *prev;
+            unsigned int    i_named;
+
+            /* Name every pinned env net once: the pin may be the cause */
+            for (iface = ifs->cqh_first; iface != (void *)ifs;
+                 iface = iface->links.cqe_next)
+            {
+                for (prev = ifs->cqh_first; prev->net != iface->net;
+                     prev = prev->links.cqe_next);
+                if (prev != iface)
+                    continue;
+
+                i_named = cfg_net_by_name(cfg_nets, iface->net->name);
+                if (i_named != UINT_MAX)
+                {
+                    WARN("TE_ENV_BIND_BY_NAME=yes restricted env net '%s' "
+                         "to /net:%s", iface->net->name,
+                         cfg_nets->nets[i_named].name);
+                }
+            }
+        }
     }
 
     /* Free list of used indexes */
@@ -2182,15 +2237,19 @@ bind_env_to_cfg_nets(tapi_env_ifs *ifs, cfg_nets_t *cfg_nets)
  * @param ifs           list with all hosts/interfaces
  * @param cfg_nets      network model configuration
  * @param used_nodes    list with used (net, node) indexes
+ * @param by_name       bind an env net named after a configuration
+ *                      net only to that net (@c TE_ENV_BIND_BY_NAME)
  *
  * @retval @c true      success
  * @retval @c false     failure
  */
 static bool
 bind_host_if(tapi_env_if *iface, tapi_env_ifs *ifs,
-             cfg_nets_t *cfg_nets, node_indexes *used_nodes)
+             cfg_nets_t *cfg_nets, node_indexes *used_nodes,
+             bool by_name)
 {
     unsigned int    i, j;
+    unsigned int    i_named = UINT_MAX;
     tapi_env_if    *p;
 
     if (iface == (void *)ifs)
@@ -2203,8 +2262,21 @@ bind_host_if(tapi_env_if *iface, tapi_env_ifs *ifs,
     VERB("Try to bind host '%s' interface '%s'",
          iface->host->name, iface->name);
 
+    if (by_name)
+    {
+        i_named = cfg_net_by_name(cfg_nets, iface->net->name);
+        if (i_named != UINT_MAX)
+        {
+            VERB("Env net '%s' may be bound to /net:%s only",
+                 iface->net->name, cfg_nets->nets[i_named].name);
+        }
+    }
+
     for (i = 0; i < cfg_nets->n_nets; ++i)
     {
+        if (i_named != UINT_MAX && i != i_named)
+            continue;
+
         for (j = 0; j < cfg_nets->nets[i].n_nodes; ++j)
         {
             if (node_is_used(used_nodes, i, j))
@@ -2284,7 +2356,7 @@ bind_host_if(tapi_env_if *iface, tapi_env_ifs *ifs,
                      iface->host->name, iface->name);
                 /* Try to bind the next host/interface */
                 if (bind_host_if(iface->links.cqe_next, ifs, cfg_nets,
-                                 used_nodes))
+                                 used_nodes, by_name))
                 {
                     return true;
                 }
@@ -2293,6 +2365,39 @@ bind_host_if(tapi_env_if *iface, tapi_env_ifs *ifs,
                 /* Failed to bind the host */
                 node_unmark_used(used_nodes, i, j);
                 iface->net->i_net = iface->i_node = UINT_MAX;
+            }
+        }
+    }
+
+    if (i_named != UINT_MAX)
+    {
+        cfg_net_t  *net = cfg_nets->nets + i_named;
+        bool        fits = false;
+
+        /*
+         * Report only a net that cannot fit whatever the other
+         * interfaces are bound to: a failure caused by them is retried
+         * by the backtracking and may well end in success.
+         */
+        if (!check_net_type_cfg_vs_env(net, iface->net->type))
+        {
+            ERROR("Env net '%s' cannot be bound to /net:%s: the net type "
+                  "does not match the env net type",
+                  iface->net->name, net->name);
+        }
+        else
+        {
+            for (j = 0; j < net->n_nodes && !fits; ++j)
+            {
+                fits = check_node_type_vs_pcos(cfg_nets, net->nodes + j,
+                                               &iface->host->processes);
+            }
+            if (!fits)
+            {
+                ERROR("Env net '%s' cannot be bound to /net:%s: none of "
+                      "its nodes suits the PCOs of host '%s'",
+                      iface->net->name, net->name,
+                      iface->host->name ? : "(unnamed)");
             }
         }
     }
