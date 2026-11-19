@@ -41,12 +41,12 @@ rpc_files() {
 # @param list List of tools for checksum.
 #
 generate() {
-    echo -n "rcf_consistency_checks;sha512sum;"
+    echo -n "rcf_consistency_checks;sha1sum;"
     rpc_files |
         sed '/^\s*$/d' |
         LC_ALL=C sort -u |
         xargs cat |
-        sha512sum |
+        sha1sum |
         awk '{print $1}'
 }
 
@@ -57,7 +57,7 @@ generate() {
 #
 detect() {
     strings $1 |
-        sed -n 's/^rcf_consistency_checks;sha512sum;/&/p'
+        sed -n 's/^rcf_consistency_checks;sha1sum;/&/p'
 }
 
 ##
